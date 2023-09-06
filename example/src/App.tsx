@@ -107,8 +107,7 @@ export default function App() {
     addSystemMessage('Initializing context...')
     initLlama({
       model: file.uri,
-      use_mlock: true,
-      n_gpu_layers: 0, // > 0: enable GPU
+      n_gpu_layers: 99, // > 0: enable GPU
       // embedding: true,
     })
       .then((ctx) => {

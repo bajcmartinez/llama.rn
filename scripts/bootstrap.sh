@@ -13,6 +13,8 @@ cp ./llama.cpp/ggml.c ./cpp/ggml.c
 cp ./llama.cpp/ggml-metal.h ./cpp/ggml-metal.h
 cp ./llama.cpp/ggml-metal.m ./cpp/ggml-metal.m
 cp ./llama.cpp/ggml-metal.metal ./cpp/ggml-metal.metal
+cp ./llama.cpp/ggml-opencl.h ./cpp/ggml-opencl.h
+cp ./llama.cpp/ggml-opencl.cpp ./cpp/ggml-opencl.cpp
 cp ./llama.cpp/ggml-alloc.h ./cpp/ggml-alloc.h
 cp ./llama.cpp/ggml-alloc.c ./cpp/ggml-alloc.c
 cp ./llama.cpp/llama.h ./cpp/llama.h
@@ -32,6 +34,8 @@ files=(
   "./cpp/common.cpp"
   "./cpp/ggml-metal.h"
   "./cpp/ggml-metal.m"
+  "./cpp/ggml-opencl.h"
+  "./cpp/ggml-opencl.cpp"
   "./cpp/llama.h"
   "./cpp/llama.cpp"
   "./cpp/k_quants.h"
