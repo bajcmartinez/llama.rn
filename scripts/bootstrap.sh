@@ -13,13 +13,16 @@ cp ./llama.cpp/ggml.c ./cpp/ggml.c
 cp ./llama.cpp/ggml-metal.h ./cpp/ggml-metal.h
 cp ./llama.cpp/ggml-metal.m ./cpp/ggml-metal.m
 cp ./llama.cpp/ggml-metal.metal ./cpp/ggml-metal.metal
+cp ./llama.cpp/ggml-vulkan.h ./cpp/ggml-vulkan.h
+cp ./llama.cpp/ggml-vulkan.cpp ./cpp/ggml-vulkan.cpp
+cp ./llama.cpp/ggml-vulkan-shaders.hpp ./cpp/ggml-vulkan-shaders.hpp
 cp ./llama.cpp/ggml-alloc.h ./cpp/ggml-alloc.h
 cp ./llama.cpp/ggml-alloc.c ./cpp/ggml-alloc.c
 cp ./llama.cpp/llama.h ./cpp/llama.h
 cp ./llama.cpp/llama.cpp ./cpp/llama.cpp
 cp ./llama.cpp/k_quants.h ./cpp/k_quants.h
 cp ./llama.cpp/k_quants.c ./cpp/k_quants.c
-cp ./llama.cpp/unicode.h ./cpp/unicode.h
+# cp ./llama.cpp/unicode.h ./cpp/unicode.h
 cp ./llama.cpp/common/log.h ./cpp/log.h
 cp ./llama.cpp/common/common.h ./cpp/common.h
 cp ./llama.cpp/common/common.cpp ./cpp/common.cpp
@@ -30,6 +33,8 @@ cp ./llama.cpp/common/grammar-parser.cpp ./cpp/grammar-parser.cpp
 files=(
   "./cpp/ggml.h"
   "./cpp/ggml.c"
+  "./cpp/ggml-vulkan.h"
+  "./cpp/ggml-vulkan.cpp"
   "./cpp/common.cpp"
   "./cpp/ggml-metal.h"
   "./cpp/ggml-metal.m"
