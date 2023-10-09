@@ -7,6 +7,8 @@ set(RNLLAMA_LIB_DIR ${CMAKE_SOURCE_DIR}/../../../cpp)
 
 set(
     SOURCE_FILES
+    ${RNLLAMA_LIB_DIR}/ggml-vulkan-shaders.hpp
+    ${RNLLAMA_LIB_DIR}/ggml-vulkan.cpp
     ${RNLLAMA_LIB_DIR}/ggml-alloc.c
     ${RNLLAMA_LIB_DIR}/ggml.c
     ${RNLLAMA_LIB_DIR}/k_quants.c
@@ -19,6 +21,9 @@ set(
 
 set(RNLLAMA_LIBRARY_NAME rnllama)
 
+include_directories(${RNLLAMA_LIB_DIR}/Vulkan-Headers/include/)
+include_directories(${NDK_ROOT}/sources/third_party/shaderc/libshaderc/include/)
+
 add_library(
     ${RNLLAMA_LIBRARY_NAME}
     SHARED
@@ -30,7 +35,14 @@ find_library(LOG_LIB log)
 target_link_libraries(${RNLLAMA_LIBRARY_NAME} ${LOG_LIB} android)
 include_directories(${RNLLAMA_LIB_DIR})
 
-target_compile_options(${RNLLAMA_LIBRARY_NAME} PRIVATE -DLM_GGML_USE_K_QUANTS -pthread)
+target_compile_options(
+  ${RNLLAMA_LIBRARY_NAME} PRIVATE
+  -DLM_GGML_USE_K_QUANTS
+  -DLM_GGML_USE_VULKAN
+  -DVK_USE_PLATFORM_ANDROID_KHR
+  -DVK_NO_PROTOTYPES
+  -pthread
+)
 
 # NOTE: If you want to debug the native code, you can uncomment if and endif
 # if (NOT ${CMAKE_BUILD_TYPE} STREQUAL "Debug")

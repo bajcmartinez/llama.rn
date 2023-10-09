@@ -1,4 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.rnllama">
-
+  <uses-feature
+    android:name="android.hardware.vulkan.compute"
+    android:version="1"
+    android:required="true" />
 </manifest>

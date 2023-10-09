@@ -51,6 +51,7 @@ android {
     externalNativeBuild {
       cmake {
         abiFilters (*reactNativeArchitectures())
+        arguments "-DNDK_ROOT=" + android.ndkDirectory, '-DANDROID_TOOLCHAIN=clang', '-DANDROID_STL=c++_static'
       }
     }
   }
