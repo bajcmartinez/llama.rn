@@ -598,7 +598,7 @@ void main() {
     for (int i = ix; i < num_blocks_per_row; i += K_QUANTS_PER_ITERATION) {
         const int y_idx    = i * QUANT_K + y_offset;
 
-        const FLOAT_TYPE d = x[ib0 + i].d;
+        const FLOAT_TYPE d = FLOAT_TYPE(x[ib0 + i].d);
 
 #if K_QUANTS_PER_ITERATION == 1
         FLOAT_TYPE sum = FLOAT_TYPE(y[y_idx +  0]) * FLOAT_TYPE(x[ib0 + i].scales[s_offset + 0]) * d * FLOAT_TYPE(int8_t((x[ib0 + i].ql[ql_offset +  0] & 0xF) | ((x[ib0 + i].qh[qh_offset +  0] & 0x03) << 4)) - 32)
