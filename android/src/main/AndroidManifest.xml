@@ -2,6 +2,6 @@
           package="com.rnllama">
   <uses-feature
     android:name="android.hardware.vulkan.compute"
-    android:version="1"
+    android:version="2"
     android:required="true" />
 </manifest>

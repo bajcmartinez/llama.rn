@@ -32,7 +32,7 @@ add_library(
 
 find_library(LOG_LIB log)
 
-target_link_libraries(${RNLLAMA_LIBRARY_NAME} ${LOG_LIB} android)
+target_link_libraries(${RNLLAMA_LIBRARY_NAME} ${LOG_LIB} android vulkan)
 include_directories(${RNLLAMA_LIB_DIR})
 
 target_compile_options(
@@ -40,7 +40,6 @@ target_compile_options(
   -DLM_GGML_USE_K_QUANTS
   -DLM_GGML_USE_VULKAN
   -DVK_USE_PLATFORM_ANDROID_KHR
-  -DVK_NO_PROTOTYPES
   -pthread
 )
 
