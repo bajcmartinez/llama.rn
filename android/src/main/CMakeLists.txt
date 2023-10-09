@@ -22,7 +22,7 @@ set(
 set(RNLLAMA_LIBRARY_NAME rnllama)
 
 include_directories(${RNLLAMA_LIB_DIR}/Vulkan-Headers/include/)
-include_directories(${NDK_ROOT}/sources/third_party/shaderc/libshaderc/include/)
+include_directories(${CMAKE_ANDROID_NDK}/sources/third_party/shaderc/libshaderc/include/)
 
 add_library(
     ${RNLLAMA_LIBRARY_NAME}
@@ -32,7 +32,16 @@ add_library(
 
 find_library(LOG_LIB log)
 
-target_link_libraries(${RNLLAMA_LIBRARY_NAME} ${LOG_LIB} android vulkan)
+target_link_libraries(
+    ${RNLLAMA_LIBRARY_NAME}
+    ${LOG_LIB}
+    android
+    vulkan
+    # cd $ANDROID_HOME/ndk/26.0.10792818/sources/third_party/shaderc
+    # $ANDROID_HOME/ndk/26.0.10792818/ndk-build NDK_PROJECT_PATH=. APP_BUILD_SCRIPT=Android.mk \
+    #    APP_STL:=c++_static APP_ABI=all libshaderc_combined -j16 APP_PLATFORM=28
+    ${CMAKE_ANDROID_NDK}/sources/third_party/shaderc/libs/c++_static/${ANDROID_ABI}/libshaderc.a
+)
 include_directories(${RNLLAMA_LIB_DIR})
 
 target_compile_options(
