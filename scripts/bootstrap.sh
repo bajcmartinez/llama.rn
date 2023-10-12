@@ -44,8 +44,6 @@ files=(
   "./cpp/k_quants.c"
   "./cpp/ggml-alloc.h"
   "./cpp/ggml-alloc.c"
-  "./cpp/ggml-backend.h"
-  "./cpp/ggml-backend.c"
 )
 
 # Loop through each file and run the sed commands
@@ -66,4 +64,5 @@ echo "Replacement completed successfully!"
 yarn example
 
 # Apply patch
+patch -p0 -d ./cpp < ./scripts/log.h.patch
 patch -p0 -d ./cpp < ./scripts/llama.cpp.patch

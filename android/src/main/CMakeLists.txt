@@ -10,7 +10,6 @@ set(
     ${RNLLAMA_LIB_DIR}/ggml-vulkan-shaders.hpp
     ${RNLLAMA_LIB_DIR}/ggml-vulkan.cpp
     ${RNLLAMA_LIB_DIR}/ggml-alloc.c
-    ${RNLLAMA_LIB_DIR}/ggml-backend.c
     ${RNLLAMA_LIB_DIR}/ggml.c
     ${RNLLAMA_LIB_DIR}/k_quants.c
     ${RNLLAMA_LIB_DIR}/common.cpp
@@ -52,6 +51,10 @@ target_compile_options(
   -DVK_USE_PLATFORM_ANDROID_KHR
   -pthread
 )
+
+if (${CMAKE_BUILD_TYPE} STREQUAL "Debug")
+    target_compile_options(${RNLLAMA_LIBRARY_NAME} PRIVATE -DRNLLAMA_ANDROID_ENABLE_LOGGING)
+endif ()
 
 # NOTE: If you want to debug the native code, you can uncomment if and endif
 # if (NOT ${CMAKE_BUILD_TYPE} STREQUAL "Debug")
