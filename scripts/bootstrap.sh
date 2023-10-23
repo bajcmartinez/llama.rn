@@ -5,6 +5,8 @@ git submodule update --recursive
 
 cd llama.cpp
 ./scripts/build-info.sh > build-info.h
+# generate vulkan shaders (need glslc)
+# python3 ./ggml_vk_generate_shaders.py
 cd -
 
 cp ./llama.cpp/build-info.h ./cpp/build-info.h
@@ -15,7 +17,7 @@ cp ./llama.cpp/ggml-metal.m ./cpp/ggml-metal.m
 cp ./llama.cpp/ggml-metal.metal ./cpp/ggml-metal.metal
 cp ./llama.cpp/ggml-vulkan.h ./cpp/ggml-vulkan.h
 cp ./llama.cpp/ggml-vulkan.cpp ./cpp/ggml-vulkan.cpp
-cp ./llama.cpp/ggml-vulkan-shaders.hpp ./cpp/ggml-vulkan-shaders.hpp
+# cp ./llama.cpp/ggml-vulkan-shaders.hpp ./cpp/ggml-vulkan-shaders.hpp
 cp ./llama.cpp/ggml-alloc.h ./cpp/ggml-alloc.h
 cp ./llama.cpp/ggml-alloc.c ./cpp/ggml-alloc.c
 cp ./llama.cpp/llama.h ./cpp/llama.h

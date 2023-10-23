@@ -12,6 +12,10 @@ void lm_ggml_vk_preallocate_buffers_graph(struct lm_ggml_tensor * node);
 void lm_ggml_vk_preallocate_buffers(void);
 void lm_ggml_vk_build_graph(struct lm_ggml_tensor * node);
 bool lm_ggml_vk_compute_forward(struct lm_ggml_compute_params * params, struct lm_ggml_tensor * tensor);
+#ifdef LM_GGML_VULKAN_CHECK_RESULTS
+void lm_ggml_vk_check_results_0(struct lm_ggml_compute_params * params, struct lm_ggml_tensor * tensor);
+void lm_ggml_vk_check_results_1(struct lm_ggml_compute_params * params, struct lm_ggml_tensor * tensor);
+#endif
 void lm_ggml_vk_graph_cleanup(void);
 
 void * lm_ggml_vk_host_malloc(size_t size);
