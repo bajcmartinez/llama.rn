@@ -30,6 +30,8 @@ cp ./llama.cpp/common/common.h ./cpp/common.h
 cp ./llama.cpp/common/common.cpp ./cpp/common.cpp
 cp ./llama.cpp/common/grammar-parser.h ./cpp/grammar-parser.h
 cp ./llama.cpp/common/grammar-parser.cpp ./cpp/grammar-parser.cpp
+cp ./llama.cpp/common/sampling.h ./cpp/sampling.h
+cp ./llama.cpp/common/sampling.cpp ./cpp/sampling.cpp
 
 # List of files to process
 files=(
@@ -55,9 +57,11 @@ for file in "${files[@]}"; do
   if [ "$OS" = "Darwin" ]; then
     sed -i '' 's/GGML_/LM_GGML_/g' $file
     sed -i '' 's/ggml_/lm_ggml_/g' $file
+    sed -i '' 's/GGMLMetalClass/LMGGMLMetalClass/g' $file
   else
     sed -i 's/GGML_/LM_GGML_/g' $file
     sed -i 's/ggml_/lm_ggml_/g' $file
+    sed -i 's/GGMLMetalClass/LMGGMLMetalClass/g' $file
   fi
 done
 
