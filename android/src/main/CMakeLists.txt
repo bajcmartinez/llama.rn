@@ -12,6 +12,7 @@ set(
     ${RNLLAMA_LIB_DIR}/ggml-vulkan-shaders.hpp
     ${RNLLAMA_LIB_DIR}/ggml-vulkan.cpp
     ${RNLLAMA_LIB_DIR}/ggml-alloc.c
+    ${RNLLAMA_LIB_DIR}/ggml-backend.c
     ${RNLLAMA_LIB_DIR}/ggml.c
     ${RNLLAMA_LIB_DIR}/k_quants.c
     ${RNLLAMA_LIB_DIR}/common.cpp
@@ -43,7 +44,6 @@ function(build_library target_name)
         ${target_name} PRIVATE
         -DLM_GGML_USE_K_QUANTS
         -DLM_GGML_USE_VULKAN
-        -DVK_USE_PLATFORM_ANDROID_KHR
         -pthread
     )
 
