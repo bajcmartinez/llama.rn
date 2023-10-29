@@ -6,22 +6,28 @@ set(CMAKE_CXX_STANDARD 11)
 set(RNLLAMA_LIB_DIR ${CMAKE_SOURCE_DIR}/../../../cpp)
 
 include_directories(${RNLLAMA_LIB_DIR})
+include_directories(${RNLLAMA_LIB_DIR}/vulkan-shaders)
 
 set(
     SOURCE_FILES
     ${RNLLAMA_LIB_DIR}/ggml-alloc.c
-    ${RNLLAMA_LIB_DIR}/ggml-backend.c
     ${RNLLAMA_LIB_DIR}/ggml.c
+    ${RNLLAMA_LIB_DIR}/ggml-vulkan.cpp
     ${RNLLAMA_LIB_DIR}/k_quants.c
     ${RNLLAMA_LIB_DIR}/common.cpp
     ${RNLLAMA_LIB_DIR}/grammar-parser.cpp
-    ${RNLLAMA_LIB_DIR}/sampling.cpp
     ${RNLLAMA_LIB_DIR}/llama.cpp
     ${RNLLAMA_LIB_DIR}/rn-llama.hpp
     ${CMAKE_SOURCE_DIR}/jni.cpp
 )
 
 find_library(LOG_LIB log)
+
+set(KOMPUTE_OPT_ANDROID_BUILD ON)
+set(KOMPUTE_OPT_DISABLE_VK_DEBUG_LAYERS ON)
+set(KOMPUTE_OPT_DISABLE_VULKAN_VERSION_CHECK ON)
+
+add_subdirectory(kompute)
 
 function(build_library target_name)
     add_library(
@@ -30,13 +36,13 @@ function(build_library target_name)
         ${SOURCE_FILES}
     )
 
-    target_link_libraries(${target_name} ${LOG_LIB} android)
+    target_link_libraries(${target_name} ${LOG_LIB} android kompute::kompute vulkan)
 
     if (${target_name} STREQUAL "rnllama_v8fp16_va")
         target_compile_options(${target_name} PRIVATE -march=armv8.2-a+fp16+dotprod)
     endif ()
 
-    target_compile_options(${target_name} PRIVATE -DLM_GGML_USE_K_QUANTS -pthread)
+    target_compile_options(${target_name} PRIVATE -DLM_GGML_USE_K_QUANTS -DLM_GGML_USE_KOMPUTE -pthread)
 
     if (${target_name} STREQUAL "rnllama_v8fp16_va")
         target_compile_options(${target_name} PRIVATE -march=armv8.2-a+fp16+dotprod)
